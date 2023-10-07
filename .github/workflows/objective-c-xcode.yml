@@ -17,6 +17,9 @@ jobs:
       - name: Pod install
         run: |
           pod install
+      - name: Version Mac
+        run: |
+          system_profiler SPSoftwareDataType SPHardwareDataType
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
