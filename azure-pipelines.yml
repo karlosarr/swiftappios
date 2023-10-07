@@ -22,6 +22,27 @@ steps:
 - task: CocoaPods@0
   inputs:
     forceRepoUpdate: false
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonarcloud'
+    organization: 'karlosarr'
+    scannerMode: 'CLI'
+    configMode: 'file'
+    extraProperties: |
+      sonar.cfamily.build-wrapper-output="build_wrapper_output_directory"
+- task: CmdLine@2
+  inputs:
+    script: |
+      wget https://sonarcloud.io/static/cpp/build-wrapper-macosx-x86.zip
+      unzip build-wrapper-macosx-x86.zip
+      ls build-wrapper-macosx-x86
+      build-wrapper-macosx-x86/build-wrapper-macosx-x86 --out-dir build_wrapper_output_directory
+- task: SonarCloudAnalyze@1
+  inputs:
+    jdkversion: 'JAVA_HOME'
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 - task: Xcode@5
   inputs:
     actions: 'build'
