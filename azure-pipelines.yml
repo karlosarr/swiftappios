@@ -31,6 +31,7 @@ steps:
     extraProperties: |
       sonar.cfamily.build-wrapper-output="build_wrapper_output_directory"
 - task: CmdLine@2
+  displayName: "Sonar Wrapper"
   inputs:
     script: |
       wget https://sonarcloud.io/static/cpp/build-wrapper-macosx-x86.zip
@@ -39,7 +40,7 @@ steps:
       build-wrapper-macosx-x86/build-wrapper-macosx-x86 --out-dir build_wrapper_output_directory xcodebuild clean build -workspace SwiftAppiOS.xcworkspace -scheme SwiftAppiOS -configuration Release -sdk 'iphoneos' CODE_SIGNING_ALLOWED=NO
 - task: SonarCloudAnalyze@1
   inputs:
-    jdkversion: 'JAVA_HOME'
+    jdkversion: 'JAVA_HOME_17_X64'
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
