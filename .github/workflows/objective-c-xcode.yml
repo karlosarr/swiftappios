@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: CocoaPods Dependency Submission Action
-        uses: advanced-security/cocoapods-dependency-submission-action@v1.1
+        uses: advanced-security/cocoapods-dependency-submission-action@v1.0
         with:
           # [optonal] The path to the Podfile.lock file. Defaults to finding all 
           # Podfile.lock in the current working directory
