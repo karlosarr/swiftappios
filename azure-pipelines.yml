@@ -10,6 +10,15 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+- task: Cache@2
+  inputs:
+    key: 'pods | "$(Agent.OS)" | Podfile.lock'
+    path: '$(System.DefaultWorkingDirectory)/Pods'
+    cacheHitVar: 'PODS_CACHE_RESTORED'
+- task: CocoaPods@0
+  inputs:
+    forceRepoUpdate: false
+  condition: and(succeeded(), ne(variables.PODS_CACHE_RESTORED, 'true'))
 - task: CocoaPods@0
   inputs:
     forceRepoUpdate: false
@@ -20,5 +29,4 @@ steps:
     sdk: 'iphoneos'
     xcWorkspacePath: 'SwiftAppiOS.xcworkspace'
     scheme: 'SwiftAppiOS'
-    xcodeVersion: '12'
     packageApp: false
