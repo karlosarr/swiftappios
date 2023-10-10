@@ -19,9 +19,6 @@ steps:
   inputs:
     forceRepoUpdate: false
   condition: and(succeeded(), ne(variables.PODS_CACHE_RESTORED, 'true'))
-- task: CocoaPods@0
-  inputs:
-    forceRepoUpdate: false
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'Sonarcloud'
