@@ -18,7 +18,7 @@ steps:
     cacheHitVar: 'PODS_CACHE_RESTORED'
 - task: CmdLine@2
   inputs:
-    script: 'sudo gem install cocoapods'
+    script: 'Pod --version'
 - task: CocoaPods@0
   inputs:
     forceRepoUpdate: true
