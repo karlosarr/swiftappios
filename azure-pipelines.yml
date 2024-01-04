@@ -16,6 +16,9 @@ steps:
     key: 'pods | "$(Agent.OS)" | Podfile.lock'
     path: '$(System.DefaultWorkingDirectory)/Pods'
     cacheHitVar: 'PODS_CACHE_RESTORED'
+- task: CmdLine@2
+  inputs:
+    script: 'sudo gem install cocoapods'
 - task: CocoaPods@0
   inputs:
     forceRepoUpdate: true
