@@ -7,8 +7,8 @@ trigger:
 - main
 
 pool:
-  #name: 'macos'
-  vmImage: 'macos-latest'
+  name: 'macos'
+  #vmImage: 'macos-latest'
 
 steps:
 - task: Cache@2
